@@ -17,14 +17,6 @@ file(GLOB_RECURSE main_src src/*.cpp)
 
 add_executable(code ${main_src}) # Add all *.cpp file after src/main.cpp, like src/Evalvisitor.cpp did
 
-# Local vendored antlr4 runtime (headers and lib) to avoid apt
-include_directories(${PROJECT_SOURCE_DIR}/third_party/antlr4-runtime/include/antlr4-runtime)
-# Provide imported target so the existing link line works
-add_library(antlr4-runtime STATIC IMPORTED GLOBAL)
-set_target_properties(antlr4-runtime PROPERTIES
-  IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/third_party/antlr4-runtime/lib/libantlr4-runtime.a"
-  INTERFACE_INCLUDE_DIRECTORIES "${PROJECT_SOURCE_DIR}/third_party/antlr4-runtime/include/antlr4-runtime"
-)
 
 ### YOU CAN'T MODIFY THE CODE BELOW
 target_link_libraries(code PyAntlr)
